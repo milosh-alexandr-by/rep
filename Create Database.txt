@@ -1,0 +1,33 @@
+Before run application you must create MySQ database:
+create database faculty;
+use faculty;
+
+In dao/src/main/resources/beans-dao.xml
+change:  
+       <prop key="hibernate.hbm2ddl.auto">update</prop>
+     to 
+       <prop key="hibernate.hbm2ddl.auto">create</prop>
+
+Then run appllication. Hibernate will create tables in database.
+
+Then enter data for admin navigation:
+insert into role values (1, "ROLE_ADMIN");
+insert into role values (2, "ROLE_STUDENT");
+insert into role values (3, "ROLE_TEACHER");
+insert into user (username, password, role_id) values ("admin", "admin", 1);
+
+In order to get "Admin Page" follow this link:
+localhost:8080/admin  (*for Apache Tomcat)
+
+and enter username: admin
+          password: admin
+
+And now you can add courses.
+
+!After STOP application:
+change:  
+       <prop key="hibernate.hbm2ddl.auto">create</prop>
+     to 
+       <prop key="hibernate.hbm2ddl.auto">update</prop>
+
+in order to data in the database is not deleted during the next run application.
